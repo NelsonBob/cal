@@ -1,6 +1,5 @@
 package fr.esgi.tp1605.use_cases.user.application;
 
-
 import fr.esgi.tp1605.kernel.QueryHandler;
 import fr.esgi.tp1605.use_cases.user.domain.UserRepository;
 

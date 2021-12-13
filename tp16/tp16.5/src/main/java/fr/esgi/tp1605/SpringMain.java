@@ -1,7 +1,5 @@
 package fr.esgi.tp1605;
 
-import fr.esgi.tp1605.kernel.Event;
-import fr.esgi.tp1605.kernel.EventDispatcher;
 import fr.esgi.tp1605.use_cases.user.application.*;
 import fr.esgi.tp1605.use_cases.user.domain.UserId;
 import org.springframework.boot.SpringApplication;
@@ -14,8 +12,6 @@ import java.util.List;
 public class SpringMain {
     public static void main(String[] args) {
         final ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringMain.class, args);
-
-        EventDispatcher<Event> eventEventDispatcher = applicationContext.getBean(EventDispatcher.class);
 
         //--1. Create User
         CreateUserCommandHandler userCommandHandler = applicationContext.getBean(CreateUserCommandHandler.class);
