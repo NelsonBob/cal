@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>fr.esgi.al</groupId>
+    <artifactId>al-tps-parent</artifactId>
+    <packaging>pom</packaging>
+
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+        <module>bom</module>
+        <module>tp1</module>
+        <module>tp2</module>
+        <module>tp3</module>
+        <module>tp4</module>
+        <module>tp5</module>
+        <module>tp6</module>
+        <module>tp7</module>
+        <module>tp8</module>
+        <module>tp9</module>
+        <module>tp10</module>
+        <module>tp11</module>
+        <module>tp12</module>
+        <module>tp13</module>
+        <module>tp14</module>
+        <module>tp15</module>
+        <module>tp16</module>
+        <module>tpCours</module>
+    </modules>
+
+</project>
