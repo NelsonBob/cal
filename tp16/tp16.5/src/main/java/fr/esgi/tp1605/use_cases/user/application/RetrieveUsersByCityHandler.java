@@ -3,7 +3,6 @@ package fr.esgi.tp1605.use_cases.user.application;
 
 import fr.esgi.tp1605.kernel.QueryHandler;
 import fr.esgi.tp1605.use_cases.user.domain.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +13,7 @@ public class RetrieveUsersByCityHandler implements QueryHandler<RetrieveUsersByC
 
     private final UserRepository userRepository;
 
-    @Autowired
-    public RetrieveUsersByCityHandler(UserRepository userRepository) {
+    private RetrieveUsersByCityHandler(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

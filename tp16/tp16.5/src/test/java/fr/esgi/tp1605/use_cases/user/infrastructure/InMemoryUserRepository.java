@@ -4,6 +4,7 @@ import fr.esgi.tp1605.kernel.NoSuchEntityException;
 import fr.esgi.tp1605.use_cases.user.domain.User;
 import fr.esgi.tp1605.use_cases.user.domain.UserId;
 import fr.esgi.tp1605.use_cases.user.domain.UserRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+@Primary
 @Service
 public final class InMemoryUserRepository implements UserRepository {
 
