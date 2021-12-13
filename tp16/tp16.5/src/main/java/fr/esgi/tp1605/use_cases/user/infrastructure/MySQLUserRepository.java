@@ -4,11 +4,9 @@ import fr.esgi.tp1605.kernel.NoSuchEntityException;
 import fr.esgi.tp1605.use_cases.user.domain.User;
 import fr.esgi.tp1605.use_cases.user.domain.UserId;
 import fr.esgi.tp1605.use_cases.user.domain.UserRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public class MySQLUserRepository implements UserRepository {
     @Override
     public UserId nextIdentity() {

@@ -7,15 +7,13 @@ import fr.esgi.tp1605.use_cases.user.domain.Address;
 import fr.esgi.tp1605.use_cases.user.domain.User;
 import fr.esgi.tp1605.use_cases.user.domain.UserId;
 import fr.esgi.tp1605.use_cases.user.domain.UserRepository;
-import org.springframework.stereotype.Service;
 
-@Service
 public final class CreateUserCommandHandler implements CommandHandler<CreateUser, UserId> {
 
     private final UserRepository userRepository;
     private final EventDispatcher<Event> eventEventDispatcher;
 
-    private CreateUserCommandHandler(UserRepository userRepository, EventDispatcher<Event> eventEventDispatcher) {
+    public CreateUserCommandHandler(UserRepository userRepository, EventDispatcher<Event> eventEventDispatcher) {
         this.userRepository = userRepository;
         this.eventEventDispatcher = eventEventDispatcher;
     }

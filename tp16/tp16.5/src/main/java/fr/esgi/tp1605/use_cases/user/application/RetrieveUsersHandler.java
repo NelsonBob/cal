@@ -2,17 +2,15 @@ package fr.esgi.tp1605.use_cases.user.application;
 
 import fr.esgi.tp1605.kernel.QueryHandler;
 import fr.esgi.tp1605.use_cases.user.domain.UserRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class RetrieveUsersHandler implements QueryHandler<RetrieveUsers, List<UserDTO>> {
 
     private final UserRepository userRepository;
 
-    private RetrieveUsersHandler(UserRepository userRepository) {
+    public RetrieveUsersHandler(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
