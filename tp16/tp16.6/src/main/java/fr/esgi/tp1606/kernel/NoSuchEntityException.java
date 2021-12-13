@@ -1,4 +1,4 @@
-package fr.esgi.tp1603.kernel;
+package fr.esgi.tp1606.kernel;
 
 public final class NoSuchEntityException extends RuntimeException {
 
