@@ -8,7 +8,7 @@ public final class NoSuchEntityException extends RuntimeException {
         super(message);
     }
 
-    public static NoSuchEntityException withId(UserId id) {
-        return new NoSuchEntityException(String.format("No entity found with ID %d.", id.getValue()));
+    public static <VOID extends ValueObjectID> NoSuchEntityException withId(VOID id) {
+        return new NoSuchEntityException(String.format("No entity found with ID %s.", id.getValue()));
     }
 }

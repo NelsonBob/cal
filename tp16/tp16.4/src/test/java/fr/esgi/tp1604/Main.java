@@ -23,7 +23,7 @@ public class Main {
 
         //--2. Modify User Address
         ModifyUserAddressCommandHandler modifyUserAddressCommandHandler = new ModifyUserAddressCommandHandler(userRepository, eventEventDispatcher);
-        modifyUserAddressCommandHandler.handle(new ModifyUserAddress(userId.getValue(), new AddressDTO("ALFORTVILLE")));
+        modifyUserAddressCommandHandler.handle(new ModifyUserAddress(userId.getIntValue(), new AddressDTO("ALFORTVILLE")));
 
         //--3. Retrieve all users
         RetrieveUsers retrieveUsers = new RetrieveUsers();

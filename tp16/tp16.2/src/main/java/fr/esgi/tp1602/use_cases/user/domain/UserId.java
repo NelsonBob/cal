@@ -11,7 +11,8 @@ public final class UserId implements ValueObjectID {
         this.value = value;
     }
 
-    public int getValue() {
+
+    public int getIntValue() {
         return value;
     }
 
@@ -33,5 +34,10 @@ public final class UserId implements ValueObjectID {
         return "UserId{" +
                 "value=" + value +
                 '}';
+    }
+
+    @Override
+    public String getValue() {
+        return String.valueOf(value);
     }
 }

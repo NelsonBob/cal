@@ -13,7 +13,7 @@ public class Main {
 
         final UserId userId = userCommandHandler.handle(createUser);
         ModifyUserAddressCommandHandler modifyUserAddressCommandHandler = new ModifyUserAddressCommandHandler(userRepository);
-        modifyUserAddressCommandHandler.handle(new ModifyUserAddress(userId.getValue(), new AddressDTO("ALFORTVILLE")));
+        modifyUserAddressCommandHandler.handle(new ModifyUserAddress(userId.getIntValue(), new AddressDTO("ALFORTVILLE")));
         System.out.println(userRepository.findById(userId));
 
 

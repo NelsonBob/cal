@@ -1,14 +1,12 @@
 package fr.esgi.tp1602.kernel;
 
-import fr.esgi.tp1602.use_cases.user.domain.UserId;
-
 public final class NoSuchEntityException extends RuntimeException {
 
     public NoSuchEntityException(String message) {
         super(message);
     }
 
-    public static NoSuchEntityException withId(UserId id) {
-        return new NoSuchEntityException(String.format("No entity found with ID %d.", id.getValue()));
+    public static <VOID extends ValueObjectID> NoSuchEntityException withId(VOID id) {
+        return new NoSuchEntityException(String.format("No entity found with ID %s.", id.getValue()));
     }
 }

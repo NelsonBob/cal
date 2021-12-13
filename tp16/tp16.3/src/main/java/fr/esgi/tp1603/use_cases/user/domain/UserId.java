@@ -11,7 +11,12 @@ public final class UserId implements ValueObjectID {
         this.value = value;
     }
 
-    public int getValue() {
+    @Override
+    public String getValue() {
+        return String.valueOf(value);
+    }
+
+    public int getIntValue() {
         return value;
     }
 
