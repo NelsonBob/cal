@@ -1,12 +1,13 @@
 package fr.esgi.tp1604.use_cases.user.application;
 
+
 import fr.esgi.tp1604.kernel.QueryHandler;
-import fr.esgi.tp1604.use_cases.user.domain.User;
 import fr.esgi.tp1604.use_cases.user.domain.UserRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class RetrieveUsersByCityHandler implements QueryHandler<RetrieveUsersByCity, List<User>> {
+public class RetrieveUsersByCityHandler implements QueryHandler<RetrieveUsersByCity, List<UserDTO>> {
 
     private final UserRepository userRepository;
 
@@ -15,7 +16,13 @@ public class RetrieveUsersByCityHandler implements QueryHandler<RetrieveUsersByC
     }
 
     @Override
-    public List<User> handle(RetrieveUsersByCity query) {
-        return userRepository.findByCity(query.city);
+    public List<UserDTO> handle(RetrieveUsersByCity query) {
+        return userRepository.findByCity(query.city)
+                .stream()
+                .map(user ->
+                        new UserDTO(user.getId(), user.getLastname(),
+                                user.getFirstname(), new AddressDTO(user.getAddress().getCity())))
+                .collect(Collectors.toList());
+
     }
 }

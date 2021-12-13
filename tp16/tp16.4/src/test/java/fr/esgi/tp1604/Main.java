@@ -3,7 +3,6 @@ package fr.esgi.tp1604;
 import fr.esgi.tp1604.kernel.Event;
 import fr.esgi.tp1604.kernel.EventDispatcher;
 import fr.esgi.tp1604.use_cases.user.application.*;
-import fr.esgi.tp1604.use_cases.user.domain.User;
 import fr.esgi.tp1604.use_cases.user.domain.UserId;
 import fr.esgi.tp1604.use_cases.user.infrastructure.InMemoryUserRepository;
 
@@ -15,12 +14,7 @@ public class Main {
 
         final InMemoryUserRepository userRepository = new InMemoryUserRepository();
 
-        EventDispatcher<Event> eventEventDispatcher = new EventDispatcher<Event>() {
-            @Override
-            public void dispatch(Event event) {
-                System.out.println("Dispatching Event " + event.getClass().getName());
-            }
-        };
+        EventDispatcher<Event> eventEventDispatcher = event -> System.out.println("Dispatching Event " + event.getClass().getName());
 
         //--1. Create User
         CreateUserCommandHandler userCommandHandler = new CreateUserCommandHandler(userRepository, eventEventDispatcher);
@@ -34,13 +28,13 @@ public class Main {
         //--3. Retrieve all users
         RetrieveUsers retrieveUsers = new RetrieveUsers();
         RetrieveUsersHandler retrieveUsersHandler = new RetrieveUsersHandler(userRepository);
-        final List<User> users = retrieveUsersHandler.handle(retrieveUsers);
+        final List<UserDTO> users = retrieveUsersHandler.handle(retrieveUsers);
         users.forEach(System.out::println);
 
         //--4. Retrieve user with ALFORTVILLE city
         RetrieveUsersByCity retrieveUsersByCity = new RetrieveUsersByCity("ALFORTVILLE");
         RetrieveUsersByCityHandler retrieveUsersByCityHandler = new RetrieveUsersByCityHandler(userRepository);
-        final List<User> searchedUsers = retrieveUsersByCityHandler.handle(retrieveUsersByCity);
+        final List<UserDTO> searchedUsers = retrieveUsersByCityHandler.handle(retrieveUsersByCity);
         searchedUsers.forEach(System.out::println);
     }
 }

@@ -17,6 +17,7 @@ public final class CreateUserCommandHandler implements CommandHandler<CreateUser
         this.userRepository = userRepository;
         this.eventEventDispatcher = eventEventDispatcher;
     }
+
     public UserId handle(CreateUser createUser) {
         final UserId userId = userRepository.nextIdentity();
         User user = new User(userId, createUser.lastname, createUser.firstname, new Address(createUser.address.city));

@@ -6,4 +6,11 @@ public class AddressDTO {
     public AddressDTO(String city) {
         this.city = city;
     }
+
+    @Override
+    public String toString() {
+        return "AddressDTO{" +
+                "city='" + city + '\'' +
+                '}';
+    }
 }

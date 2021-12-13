@@ -5,8 +5,6 @@ import fr.esgi.tp1604.use_cases.user.domain.User;
 import fr.esgi.tp1604.use_cases.user.domain.UserId;
 import fr.esgi.tp1604.use_cases.user.domain.UserRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -45,12 +43,12 @@ public final class InMemoryUserRepository implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        return Collections.unmodifiableList(new ArrayList<>(data.values()));
+        return List.copyOf(data.values());
     }
 
     @Override
     public List<User> findByCity(String city) {
-        return Collections.unmodifiableList(new ArrayList<>(data.values().stream()
-                .filter(user -> user.getAddress().getCity().equals(city)).collect(Collectors.toList())));
+        return List.copyOf(data.values().stream()
+                .filter(user -> user.getAddress().getCity().equals(city)).collect(Collectors.toList()));
     }
 }
