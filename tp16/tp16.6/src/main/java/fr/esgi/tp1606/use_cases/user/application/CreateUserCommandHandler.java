@@ -5,8 +5,8 @@ import fr.esgi.tp1606.kernel.Event;
 import fr.esgi.tp1606.kernel.EventDispatcher;
 import fr.esgi.tp1606.use_cases.user.domain.Address;
 import fr.esgi.tp1606.use_cases.user.domain.User;
-import fr.esgi.tp1606.use_cases.user.domain.UserId;
 import fr.esgi.tp1606.use_cases.user.domain.UserEventSourcedRepository;
+import fr.esgi.tp1606.use_cases.user.domain.UserId;
 
 public final class CreateUserCommandHandler implements CommandHandler<CreateUser, UserId> {
 
@@ -20,7 +20,7 @@ public final class CreateUserCommandHandler implements CommandHandler<CreateUser
 
     public UserId handle(CreateUser createUser) {
         final UserId userId = userEventSourcedRepository.nextIdentity();
-        User user = new User(userId, createUser.lastname, createUser.firstname, new Address(createUser.address.city));
+        User user = User.of(userId, createUser.lastname, createUser.firstname, new Address(createUser.address.city));
         userEventSourcedRepository.add(user);
         eventEventDispatcher.dispatch(new CreateUserApplicationEvent(userId));
         return userId;
