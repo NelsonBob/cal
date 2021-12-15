@@ -49,6 +49,6 @@ public final class InMemoryUserRepository implements UserRepository {
     @Override
     public List<User> findByCity(String city) {
         return List.copyOf(data.values().stream()
-                .filter(user -> user.getAddress().getCity().equals(city)).collect(Collectors.toList()));
+                .filter(user -> user.getAddress().getCity().equalsIgnoreCase(city)).collect(Collectors.toList()));
     }
 }

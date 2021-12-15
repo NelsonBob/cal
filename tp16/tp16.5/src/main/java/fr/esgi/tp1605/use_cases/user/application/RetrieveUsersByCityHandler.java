@@ -5,7 +5,6 @@ import fr.esgi.tp1605.use_cases.user.domain.User;
 import fr.esgi.tp1605.use_cases.user.domain.UserRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RetrieveUsersByCityHandler implements QueryHandler<RetrieveUsersByCity, List<User>> {
 
@@ -17,9 +16,11 @@ public class RetrieveUsersByCityHandler implements QueryHandler<RetrieveUsersByC
 
     @Override
     public List<User> handle(RetrieveUsersByCity query) {
-        return userRepository.findByCity(query.city)
-                .stream()
-                .collect(Collectors.toList());
+        final List<User> users = userRepository.findByCity(query.city);
+        if (users == null || users.isEmpty()) {
+            throw new NoSuchCityException();
+        }
+        return users;
 
     }
 }

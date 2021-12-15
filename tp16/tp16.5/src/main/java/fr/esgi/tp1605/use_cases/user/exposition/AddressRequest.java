@@ -1,6 +1,7 @@
 package fr.esgi.tp1605.use_cases.user.exposition;
 
 public class AddressRequest {
+
     public String city;
 
     public AddressRequest(String city) {
