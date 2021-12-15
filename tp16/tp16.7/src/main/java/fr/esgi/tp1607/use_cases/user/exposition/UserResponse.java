@@ -15,26 +15,6 @@ public class UserResponse {
         this.address = address;
     }
 
-    public UserResponse() {
-    }
-
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public void setAddress(AddressResponse address) {
-        this.address = address;
-    }
-
     @Override
     public String toString() {
         return "UserDTO{" +

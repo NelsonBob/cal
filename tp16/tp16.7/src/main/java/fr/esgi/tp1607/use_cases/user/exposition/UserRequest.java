@@ -1,12 +1,9 @@
 package fr.esgi.tp1607.use_cases.user.exposition;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class UserRequest {
-
-    @NotNull
-    public String id;
 
     @NotNull
     @NotBlank
@@ -17,6 +14,5 @@ public class UserRequest {
     public String firstname;
 
     @NotNull
-    @NotBlank
     public AddressRequest address;
 }

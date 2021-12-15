@@ -5,7 +5,7 @@ import fr.esgi.tp1607.kernel.QueryBus;
 import fr.esgi.tp1607.use_cases.user.application.CreateUser;
 import fr.esgi.tp1607.use_cases.user.application.RetrieveUsers;
 import fr.esgi.tp1607.use_cases.user.domain.Address;
-import jakarta.validation.Valid;
+import fr.esgi.tp1607.use_cases.user.domain.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,11 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 @RestController
@@ -31,14 +33,13 @@ public class UserController {
 
     @GetMapping(path = "/users", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<UsersResponse> getAll() {
-        final List<UserResponse> users = queryBus.send(new RetrieveUsers());
-        UsersResponse usersResponseResult = new UsersResponse();
-        usersResponseResult.users = users;
+        final List<User> users = queryBus.send(new RetrieveUsers());
+        UsersResponse usersResponseResult = new UsersResponse(users.stream().map(user -> new UserResponse(String.valueOf(user.getId().getValue()), user.getLastname(), user.getFirstname(), new AddressResponse(user.getAddress().getCity()))).collect(Collectors.toList()));
         return ResponseEntity.ok(usersResponseResult);
     }
 
     @PostMapping(path = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> create(@Valid @RequestBody UserRequest request) {
+    public ResponseEntity<Void> create(@RequestBody @Valid UserRequest request) {
         CreateUser createUser = new CreateUser(request.lastname, request.firstname, new Address(request.address.city));
         commandBus.send(createUser);
         return ResponseEntity.ok().build();
@@ -49,7 +50,7 @@ public class UserController {
     public Map<String, String> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
+        ex.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);

@@ -4,6 +4,9 @@ package fr.esgi.tp1605.use_cases.user.exposition;
 public class UserResponse {
 
     public String id;
+
+    //no lastname explicitly
+
     public String firstname;
     public AddressResponse address;
 

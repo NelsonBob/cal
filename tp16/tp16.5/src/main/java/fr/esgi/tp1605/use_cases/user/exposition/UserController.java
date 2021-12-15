@@ -34,16 +34,14 @@ public class UserController {
     @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<UsersResponse> getAll() {
         final List<User> users = retrieveUsersHandler.handle(new RetrieveUsers());
-        UsersResponse usersResponseResult = new UsersResponse();
-        usersResponseResult.users = users.stream().map(user -> new UserResponse(String.valueOf(user.getId().getValue()), user.getFirstname(), new AddressResponse(user.getAddress().getCity()))).collect(Collectors.toList());
+        UsersResponse usersResponseResult = new UsersResponse(users.stream().map(user -> new UserResponse(String.valueOf(user.getId().getValue()), user.getFirstname(), new AddressResponse(user.getAddress().getCity()))).collect(Collectors.toList()));
         return ResponseEntity.ok(usersResponseResult);
     }
 
     @GetMapping(path = "/cities/{city}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<UsersResponse> getUsersByCity(@PathVariable("city") String city) {
         final List<User> users = retrieveUsersByCityHandler.handle(new RetrieveUsersByCity(city));
-        UsersResponse usersResponseResult = new UsersResponse();
-        usersResponseResult.users = users.stream().map(user -> new UserResponse(String.valueOf(user.getId().getValue()), user.getFirstname(), new AddressResponse(user.getAddress().getCity()))).collect(Collectors.toList());
+        UsersResponse usersResponseResult = new UsersResponse(users.stream().map(user -> new UserResponse(String.valueOf(user.getId().getValue()), user.getFirstname(), new AddressResponse(user.getAddress().getCity()))).collect(Collectors.toList()));
         return ResponseEntity.ok(usersResponseResult);
     }
 
@@ -59,7 +57,7 @@ public class UserController {
     public Map<String, String> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
+        ex.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);

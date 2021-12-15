@@ -6,5 +6,9 @@ import java.util.List;
 @SuppressWarnings("all")
 @XmlRootElement
 public class UsersResponse {
-    public List<UserResponse> users;
+    public final List<UserResponse> users;
+
+    public UsersResponse(List<UserResponse> users) {
+        this.users = users;
+    }
 }
