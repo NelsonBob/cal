@@ -3,6 +3,7 @@ package fr.esgi.tp1605.use_cases.user.exposition;
 import fr.esgi.tp1605.use_cases.user.application.*;
 import fr.esgi.tp1605.use_cases.user.domain.Address;
 import fr.esgi.tp1605.use_cases.user.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,8 @@ public class UserController {
     private final RetrieveUsersHandler retrieveUsersHandler;
     private final RetrieveUsersByCityHandler retrieveUsersByCityHandler;
 
-    public UserController(CreateUserCommandHandler createUserCommandHandler, RetrieveUsersHandler retrieveUsersHandler, RetrieveUsersByCityHandler retrieveUsersByCityHandler) {
+    @Autowired
+    private UserController(CreateUserCommandHandler createUserCommandHandler, RetrieveUsersHandler retrieveUsersHandler, RetrieveUsersByCityHandler retrieveUsersByCityHandler) {
         this.createUserCommandHandler = createUserCommandHandler;
         this.retrieveUsersHandler = retrieveUsersHandler;
         this.retrieveUsersByCityHandler = retrieveUsersByCityHandler;
@@ -38,7 +40,7 @@ public class UserController {
         return ResponseEntity.ok(usersResponseResult);
     }
 
-    @GetMapping(path = "/cities/{city}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(path = "/cities/{city}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<UsersResponse> getUsersByCity(@PathVariable("city") String city) {
         final List<User> users = retrieveUsersByCityHandler.handle(new RetrieveUsersByCity(city));
         UsersResponse usersResponseResult = new UsersResponse(users.stream().map(user -> new UserResponse(String.valueOf(user.getId().getValue()), user.getFirstname(), new AddressResponse(user.getAddress().getCity()))).collect(Collectors.toList()));

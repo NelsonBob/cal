@@ -11,6 +11,10 @@ public class SimpleCommandBus implements CommandBus {
 
     @Override
     public <C extends Command, R> R send(C command) {
+        return dispatch(command);
+    }
+
+    private <C extends Command, R> R dispatch(C command) {
         final CommandHandler commandHandler = dataMap.get(command.getClass());
         if (commandHandler == null) {
             throw new RuntimeException("No such command handler for " + command.getClass().getName());
