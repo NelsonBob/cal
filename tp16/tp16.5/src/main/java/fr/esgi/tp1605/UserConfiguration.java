@@ -2,15 +2,17 @@ package fr.esgi.tp1605;
 
 import fr.esgi.tp1605.kernel.Event;
 import fr.esgi.tp1605.kernel.EventDispatcher;
-import fr.esgi.tp1605.use_cases.user.application.CreateUserCommandHandler;
-import fr.esgi.tp1605.use_cases.user.application.ModifyUserAddressCommandHandler;
-import fr.esgi.tp1605.use_cases.user.application.RetrieveUsersByCityHandler;
-import fr.esgi.tp1605.use_cases.user.application.RetrieveUsersHandler;
+import fr.esgi.tp1605.kernel.EventListener;
+import fr.esgi.tp1605.use_cases.user.application.*;
 import fr.esgi.tp1605.use_cases.user.domain.UserRepository;
 import fr.esgi.tp1605.use_cases.user.infrastructure.DefaultEventDispatcher;
 import fr.esgi.tp1605.use_cases.user.infrastructure.InMemoryUserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Configuration
 public class UserConfiguration {
@@ -22,7 +24,10 @@ public class UserConfiguration {
 
     @Bean
     public EventDispatcher<Event> eventEventDispatcher() {
-        return new DefaultEventDispatcher();
+        final Map<Class<? extends Event>, List<EventListener<? extends Event>>> listenerMap = new HashMap<>();
+        listenerMap.put(ModifyUserAddressEvent.class, List.of(new ModifyUserAddressEventListener()));
+        listenerMap.put(CreateUserEvent.class, List.of(new CreateUserEventListener()));
+        return new DefaultEventDispatcher(listenerMap);
     }
 
     @Bean
