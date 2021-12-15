@@ -1,4 +1,4 @@
-package fr.esgi.tp1605.use_cases.user.application;
+package fr.esgi.tp1605.use_cases.user.exposition;
 
 import fr.esgi.tp1605.use_cases.user.domain.UserId;
 

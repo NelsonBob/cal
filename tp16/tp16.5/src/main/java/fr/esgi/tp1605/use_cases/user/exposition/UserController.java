@@ -1,8 +1,7 @@
-package fr.esgi.tp1605.exposition;
+package fr.esgi.tp1605.use_cases.user.exposition;
 
 import fr.esgi.tp1605.use_cases.user.application.RetrieveUsers;
 import fr.esgi.tp1605.use_cases.user.application.RetrieveUsersHandler;
-import fr.esgi.tp1605.use_cases.user.application.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

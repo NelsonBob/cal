@@ -1,6 +1,4 @@
-package fr.esgi.tp1605.exposition;
-
-import fr.esgi.tp1605.use_cases.user.application.UserDTO;
+package fr.esgi.tp1605.use_cases.user.exposition;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;

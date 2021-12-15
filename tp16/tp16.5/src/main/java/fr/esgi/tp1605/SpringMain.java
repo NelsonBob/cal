@@ -2,6 +2,8 @@ package fr.esgi.tp1605;
 
 import fr.esgi.tp1605.use_cases.user.application.*;
 import fr.esgi.tp1605.use_cases.user.domain.UserId;
+import fr.esgi.tp1605.use_cases.user.exposition.AddressDTO;
+import fr.esgi.tp1605.use_cases.user.exposition.UserDTO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

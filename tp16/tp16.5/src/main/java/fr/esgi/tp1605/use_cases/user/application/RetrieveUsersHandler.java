@@ -2,6 +2,8 @@ package fr.esgi.tp1605.use_cases.user.application;
 
 import fr.esgi.tp1605.kernel.QueryHandler;
 import fr.esgi.tp1605.use_cases.user.domain.UserRepository;
+import fr.esgi.tp1605.use_cases.user.exposition.AddressDTO;
+import fr.esgi.tp1605.use_cases.user.exposition.UserDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

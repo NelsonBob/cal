@@ -1,6 +1,7 @@
 package fr.esgi.tp1605.use_cases.user.application;
 
 import fr.esgi.tp1605.kernel.Command;
+import fr.esgi.tp1605.use_cases.user.exposition.AddressDTO;
 
 public class ModifyUserAddress implements Command {
 
