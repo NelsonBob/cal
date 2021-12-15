@@ -1,11 +1,12 @@
-package fr.esgi.tp1605.use_cases.user.exposition;
+package fr.esgi.tp1607.use_cases.user.exposition;
 
-public class AddressDTO {
-    public final String city;
+public class AddressResponse {
+    public String city;
 
-    public AddressDTO(String city) {
+    public AddressResponse(String city) {
         this.city = city;
     }
+
 
     @Override
     public String toString() {

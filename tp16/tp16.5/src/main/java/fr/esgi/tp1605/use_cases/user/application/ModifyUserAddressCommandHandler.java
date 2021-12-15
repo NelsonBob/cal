@@ -21,7 +21,7 @@ public class ModifyUserAddressCommandHandler implements CommandHandler<ModifyUse
     public Void handle(ModifyUserAddress command) {
         var userId = new UserId(command.userId);
         var user = userRepository.findById(userId);
-        var address = new Address(command.address.city);
+        var address = new Address(command.address.getCity());
         user.changeAddress(address);
         userRepository.add(user);
         eventEventDispatcher.dispatch(new ModifyUserAddressEvent(userId));

@@ -1,14 +1,12 @@
 package fr.esgi.tp1605.use_cases.user.application;
 
 import fr.esgi.tp1605.kernel.QueryHandler;
+import fr.esgi.tp1605.use_cases.user.domain.User;
 import fr.esgi.tp1605.use_cases.user.domain.UserRepository;
-import fr.esgi.tp1605.use_cases.user.exposition.AddressDTO;
-import fr.esgi.tp1605.use_cases.user.exposition.UserDTO;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class RetrieveUsersHandler implements QueryHandler<RetrieveUsers, List<UserDTO>> {
+public class RetrieveUsersHandler implements QueryHandler<RetrieveUsers, List<User>> {
 
     private final UserRepository userRepository;
 
@@ -17,12 +15,7 @@ public class RetrieveUsersHandler implements QueryHandler<RetrieveUsers, List<Us
     }
 
     @Override
-    public List<UserDTO> handle(RetrieveUsers query) {
-        return userRepository.findAll()
-                .stream()
-                .map(user ->
-                        new UserDTO(user.getId(), user.getLastname(),
-                                user.getFirstname(), new AddressDTO(user.getAddress().getCity())))
-                .collect(Collectors.toList());
+    public List<User> handle(RetrieveUsers query) {
+        return userRepository.findAll();
     }
 }

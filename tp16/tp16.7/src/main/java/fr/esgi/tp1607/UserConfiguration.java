@@ -40,6 +40,13 @@ public class UserConfiguration {
     }
 
     @Bean
+    public CommandBus commandBus() {
+        final Map<Class<? extends Command>, CommandHandler> commandHandlerMap =
+                Collections.singletonMap(CreateUser.class, new CreateUserCommandHandler(userRepository(), eventEventDispatcher()));
+        return new SimpleCommandBus(commandHandlerMap);
+    }
+
+    @Bean
     public QueryBus queryBus() {
         final Map<Class<? extends Query>, QueryHandler> queryHandlerMap =
                 Collections.singletonMap(RetrieveUsers.class, new RetrieveUsersHandler(userRepository()));

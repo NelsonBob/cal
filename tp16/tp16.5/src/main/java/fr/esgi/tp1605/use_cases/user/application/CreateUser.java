@@ -1,7 +1,7 @@
 package fr.esgi.tp1605.use_cases.user.application;
 
 import fr.esgi.tp1605.kernel.Command;
-import fr.esgi.tp1605.use_cases.user.exposition.AddressDTO;
+import fr.esgi.tp1605.use_cases.user.domain.Address;
 
 /**
  * Command object
@@ -11,9 +11,9 @@ public final class CreateUser implements Command {
 
     public final String lastname;
     public final String firstname;
-    public final AddressDTO address;
+    public final Address address;
 
-    public CreateUser(String lastname, String firstname, AddressDTO address) {
+    public CreateUser(String lastname, String firstname, Address address) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.address = address;
