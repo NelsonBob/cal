@@ -23,10 +23,10 @@ public class UserController {
     }
 
     @GetMapping(value = "/all", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Users> getAll() {
+    public ResponseEntity<UsersDTO> getAll() {
         final List<UserDTO> users = retrieveUsersHandler.handle(new RetrieveUsers());
-        Users usersResult = new Users();
-        usersResult.users = users;
-        return ResponseEntity.ok(usersResult);
+        UsersDTO usersDTOResult = new UsersDTO();
+        usersDTOResult.users = users;
+        return ResponseEntity.ok(usersDTOResult);
     }
 }

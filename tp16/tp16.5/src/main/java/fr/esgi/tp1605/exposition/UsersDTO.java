@@ -7,6 +7,6 @@ import java.util.List;
 
 @SuppressWarnings("all")
 @XmlRootElement
-public class Users {
+public class UsersDTO {
     public List<UserDTO> users;
 }
