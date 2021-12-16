@@ -6,6 +6,7 @@ import fr.esgi.tp1607.use_cases.user.application.CreateUser;
 import fr.esgi.tp1607.use_cases.user.application.RetrieveUsers;
 import fr.esgi.tp1607.use_cases.user.domain.Address;
 import fr.esgi.tp1607.use_cases.user.domain.User;
+import fr.esgi.tp1607.use_cases.user.domain.UserId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +43,8 @@ public class UserController {
     @PostMapping(path = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> create(@RequestBody @Valid UserRequest request) {
         CreateUser createUser = new CreateUser(request.lastname, request.firstname, new Address(request.address.city));
-        commandBus.send(createUser);
-        return ResponseEntity.ok().build();
+        UserId userId = commandBus.send(createUser);
+        return ResponseEntity.created(URI.create("/users/" + userId.getValue())).build();
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

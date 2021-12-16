@@ -67,9 +67,9 @@ public class UserController {
         return errors;
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoSuchCityException.class)
-    public String handleNoSuchCityException() {
-        return "COUCOU MY MESSAGE";
+    public void handleNoSuchCityException() {
+        //empty
     }
 }

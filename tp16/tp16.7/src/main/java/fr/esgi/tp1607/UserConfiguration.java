@@ -41,8 +41,9 @@ public class UserConfiguration {
 
     @Bean
     public CommandBus commandBus() {
-        final Map<Class<? extends Command>, CommandHandler> commandHandlerMap =
-                Collections.singletonMap(CreateUser.class, new CreateUserCommandHandler(userRepository(), eventEventDispatcher()));
+        final Map<Class<? extends Command>, CommandHandler> commandHandlerMap = new HashMap<>();
+        commandHandlerMap.put(CreateUser.class, new CreateUserCommandHandler(userRepository(), eventEventDispatcher()));
+        commandHandlerMap.put(ModifyUserAddress.class, new ModifyUserAddressCommandHandler(userRepository(), eventEventDispatcher()));
         return new SimpleCommandBus(commandHandlerMap);
     }
 
